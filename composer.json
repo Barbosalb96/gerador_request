@@ -1,0 +1,19 @@
+{
+    "name": "lucas/pacote",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Lucas\\Pacote\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas Silva",
+            "email": "lucas.silva@ati.ma.gov.br"
+        }
+    ],
+    "require": {},
+    "providers": [
+        "Lucas\Pacote\GenerateRequestServiceProvider::class"
+    ]
+}
