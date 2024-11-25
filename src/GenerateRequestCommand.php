@@ -48,7 +48,7 @@ class GenerateRequestCommand extends Command
             }
 
             switch ($column['type_name']) {
-                case 'string':
+                case 'varchar':
                     $rule[] = 'string';
                     $messages["$field.string"] = "$messagePrefix deve ser uma string.";
 
