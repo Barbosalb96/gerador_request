@@ -2,7 +2,6 @@
 
 namespace Lucas\Pacote;
 
-use barbosalb96\Request\GenerateRequestCommand;
 use Illuminate\Support\ServiceProvider;
 
 class GenerateRequestServiceProvider extends ServiceProvider

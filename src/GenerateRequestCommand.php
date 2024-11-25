@@ -1,6 +1,6 @@
 <?php
 
-namespace barbosalb96\Request;
+namespace Lucas\Pacote;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
