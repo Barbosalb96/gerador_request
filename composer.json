@@ -4,13 +4,13 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Lucas\\Pacote\\": "src/"
+            "barbosalb96\\": "src/"
         }
     },
     "authors": [
         {
             "name": "Lucas Silva",
-            "email": "lucas.silva@ati.ma.gov.br"
+            "email": "barbosalucaslbs96@gmail.com"
         }
     ],
     "require": {},

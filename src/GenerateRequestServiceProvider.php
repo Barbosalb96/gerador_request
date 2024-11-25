@@ -1,6 +1,6 @@
 <?php
 
-namespace Lucas\Pacote;
+namespace barbosalb96;
 
 use Illuminate\Support\ServiceProvider;
 
