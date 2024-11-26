@@ -25,7 +25,7 @@ Este pacote permite gerar automaticamente classes de **Form Request** no Laravel
    ```php
    'providers' => [
        ...
-       Lucas\GenerateRequestServiceProvider::class,
+       barbosalb96\GenerateRequestServiceProvider::class,
    ],
    ```
 
