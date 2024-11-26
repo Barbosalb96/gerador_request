@@ -78,7 +78,7 @@ class GenerateRequestCommand extends Command
                         };
                     })->toArray();
                     if (!empty($relashion)) {
-                        $rule[] = 'exists:' . $relashion['foreign_table'] . ":" . $relashion['foreign_columns'][0];
+                        $rule[] = 'exists:' . $relashion['foreign_table'] . "," . $relashion['foreign_columns'][0];
                         $messages["$field.integer"] = "$messagePrefix deve existir na tabela " . $relashion['foreign_table'];
                     }
 
