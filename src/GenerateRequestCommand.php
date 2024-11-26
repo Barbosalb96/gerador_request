@@ -23,6 +23,7 @@ class GenerateRequestCommand extends Command
 
         $tableName = (new $modelClass())->getTable();
         $columns = Schema::getConnection()->getSchemaBuilder()->getColumns($tableName);
+        $getForeignKeys = Schema::getConnection()->getSchemaBuilder()->getForeignKeys($tableName);
 
         $requestPath = app_path("Http/Requests/{$modelName}Request.php");
 
@@ -70,6 +71,17 @@ class GenerateRequestCommand extends Command
                 case 'smallint':
                 case 'bigint':
                     $rule[] = 'integer';
+
+                    $relashion = collect($getForeignKeys)->flatMap(function ($item) use ($column) {
+                        if ($item['columns'][0] === $column['name']) {
+                            return $item;
+                        };
+                    })->toArray();
+                    if (!empty($relashion)) {
+                        $rule[] = 'exists:' . $relashion['foreign_table'] . ":" . $relashion['foreign_columns'][0];
+                        $messages["$field.integer"] = "$messagePrefix deve existir na tabela " . $relashion['foreign_table'];
+                    }
+
                     $messages["$field.integer"] = "$messagePrefix deve ser um número inteiro.";
                     $prepareStatements[] = "\$this->merge(['$field' => is_null(\$this->input('$field')) ? null : (int) \$this->input('$field')]);";
                     break;
