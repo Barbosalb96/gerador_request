@@ -6,7 +6,7 @@ Este pacote permite gerar automaticamente classes de **Form Request** no Laravel
 ## Requisitos
 
 - PHP >= 8.0
-- Laravel >= 8.x
+- Laravel >= 11.x
 
 ---
 
