@@ -91,9 +91,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'age' => 'nullable|integer',
+            'name' => ['required','string','max:255'],
+            'email' => 'required','string','email','max:255',
+            'age' => 'nullable','integer',
         ];
     }
 
