@@ -16,7 +16,7 @@ Este pacote permite gerar automaticamente classes de **Form Request** no Laravel
    Execute o comando abaixo para instalar o pacote:
 
    ```bash
-   composer require barbosalb96/request
+   composer require barbosalb96/request:master-dev 
    ```
 
 2. **Configure o Service Provider**  

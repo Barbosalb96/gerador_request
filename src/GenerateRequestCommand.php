@@ -66,7 +66,6 @@ class GenerateRequestCommand extends Command
                     $rule[] = 'string';
                     $messages["$field.string"] = "$messagePrefix deve ser um texto.";
                     break;
-
                 case 'integer':
                 case 'smallint':
                 case 'bigint':
@@ -133,7 +132,7 @@ class GenerateRequestCommand extends Command
                     break;
             }
 
-            $rules[] = "'$field' => '" . implode('|', $rule) . "'";
+            $rules[] = "'$field' => ['" . implode("','", $rule) . "']";
         }
 
         $content = "<?php
