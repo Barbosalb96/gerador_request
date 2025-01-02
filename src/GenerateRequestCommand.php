@@ -54,7 +54,8 @@ class GenerateRequestCommand extends Command
             }
 
             [$fieldRules, $fieldMessages, $fieldPrepare] = $this->processField($column, $field, $foreignKeys);
-            $rules[] = "'$field' => [" . implode(", ", $fieldRules) . "]";
+
+            $rules[] = "'$field' => ['" . implode("', '", $fieldRules) . "']";
             $messages = array_merge($messages, $fieldMessages);
             $prepareStatements = array_merge($prepareStatements, $fieldPrepare);
         }
@@ -173,7 +174,9 @@ class GenerateRequestCommand extends Command
 
     private function buildRequestContent(string $modelName, array $rules, array $messages, array $prepareStatements): string
     {
-        $rulesFormatted = implode(",\n            ", array_map(fn($rule) => "'$rule'", $rules));
+
+        $rulesFormatted = implode(",\n            ", array_map(fn($rule) => "$rule", $rules));
+        dd($rulesFormatted);
         $messagesFormatted = implode(",\n            ", array_map(fn($k, $v) => "'$k' => '$v'", array_keys($messages), $messages));
         $prepareStatementsFormatted = implode("\n        ", $prepareStatements);
 
