@@ -163,8 +163,8 @@ class GenerateRequestCommand extends Command
     {
         $content = $this->buildRequestContent($modelName, $rules, $messages, $prepareStatements);
 
-        if (!File::exists($requestPath)) {
-            File::makeDirectory($requestPath, 0755, true);
+        if (!File::exists(dirname($requestPath))) {
+            File::makeDirectory(dirname($requestPath), 0755, true);
         }
 
         File::put($requestPath, $content);
@@ -173,6 +173,10 @@ class GenerateRequestCommand extends Command
 
     private function buildRequestContent(string $modelName, array $rules, array $messages, array $prepareStatements): string
     {
+        $rulesFormatted = implode(",\n            ", array_map(fn($rule) => "'$rule'", $rules));
+        $messagesFormatted = implode(",\n            ", array_map(fn($k, $v) => "'$k' => '$v'", array_keys($messages), $messages));
+        $prepareStatementsFormatted = implode("\n        ", $prepareStatements);
+
         return <<<PHP
 <?php
 
@@ -190,22 +194,23 @@ class {$modelName}Request extends FormRequest
     public function rules()
     {
         return [
-            " . implode(",\n            ", $rules) . "
+            $rulesFormatted
         ];
     }
 
     public function messages()
     {
         return [
-            " . implode(",\n            ", array_map(fn($k, $v) => "'$k' => '$v'", array_keys($messages), $messages)) . "
+            $messagesFormatted
         ];
     }
 
     protected function prepareForValidation()
     {
-        " . implode("\n        ", $prepareStatements) . "
+        $prepareStatementsFormatted
     }
 }
 PHP;
     }
+
 }
